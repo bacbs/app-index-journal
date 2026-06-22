@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5">
+    <title>爱游戏 · 产品说明</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+            background-color: #f6f7f9;
+            color: #1e2023;
+            line-height: 1.65;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* 深色头图区域 */
+        .hero {
+            background: linear-gradient(145deg, #121418 0%, #1b1f26 100%);
+            color: #e5e9f0;
+            padding: 4rem 2rem 3.2rem;
+            text-align: center;
+        }
+
+        .hero h1 {
+            font-size: 2.6rem;
+            font-weight: 500;
+            letter-spacing: 0.02em;
+            margin-bottom: 0.6rem;
+        }
+
+        .hero .sub {
+            font-size: 1.05rem;
+            color: #a6b0c2;
+            max-width: 600px;
+            margin: 0 auto 1.8rem;
+            line-height: 1.6;
+        }
+
+        .hero .tagline {
+            display: inline-block;
+            background: rgba(255, 255, 255, 0.06);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            padding: 0.4rem 1.2rem;
+            border-radius: 40px;
+            font-size: 0.85rem;
+            color: #b7c1d4;
+        }
+
+        .hero .tagline span {
+            color: #f0c27b;
+        }
+
+        /* 浅色正文区 */
+        .content-wrapper {
+            max-width: 900px;
+            width: 100%;
+            margin: 0 auto;
+            padding: 2.8rem 1.8rem 3.5rem;
+            background: #ffffff;
+            box-shadow: 0 2px 12px rgba(0, 0, 0, 0.02);
+            flex: 1;
+        }
+
+        .section-title {
+            font-size: 1.3rem;
+            font-weight: 500;
+            margin-top: 2.6rem;
+            margin-bottom: 1rem;
+            color: #1f2937;
+            border-left: 4px solid #d97737;
+            padding-left: 1rem;
+        }
+
+        .section-title:first-of-type {
+            margin-top: 0;
+        }
+
+        p {
+            margin-bottom: 1.2rem;
+            font-size: 1rem;
+        }
+
+        /* 强调色链接 */
+        a {
+            color: #c55a1e;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.18s ease, box-shadow 0.18s ease;
+            box-shadow: 0 1px 0 transparent;
+        }
+
+        a:hover {
+            color: #9a4214;
+            box-shadow: 0 1px 0 #9a4214;
+        }
+
+        /* 卡片网格 — 亮点/特点 */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+            margin: 1.6rem 0 0.8rem;
+        }
+
+        .feature-card {
+            background: #f8fafc;
+            border-radius: 1rem;
+            padding: 1.3rem 1.2rem;
+            border: 1px solid #e5e9f0;
+            transition: background 0.2s, box-shadow 0.2s;
+        }
+
+        .feature-card:hover {
+            background: #f1f4f9;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.03);
+        }
+
+        .feature-card h3 {
+            font-size: 1.05rem;
+            font-weight: 500;
+            color: #1f2937;
+            margin-bottom: 0.45rem;
+        }
+
+        .feature-card p {
+            font-size: 0.9rem;
+            color: #4b5563;
+            margin-bottom: 0;
+            line-height: 1.5;
+        }
+
+        .feature-card .icon {
+            display: inline-block;
+            font-size: 1.2rem;
+            margin-bottom: 0.25rem;
+        }
+
+        /* 使用场景 列表 */
+        .scene-list {
+            list-style: none;
+            padding: 0;
+            margin: 1rem 0 1.2rem;
+            display: flex;
+            flex-direction: column;
+            gap: 0.8rem;
+        }
+
+        .scene-list li {
+            background: #fafbfc;
+            padding: 0.8rem 1.2rem;
+            border-radius: 20px;
+            border: 1px solid #eef1f6;
+            font-size: 0.95rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 0.5rem;
+        }
+
+        .scene-list li::before {
+            content: "▸";
+            color: #d97737;
+            font-weight: 500;
+            flex-shrink: 0;
+        }
+
+        /* FAQ 摘要（简约款） */
+        .faq-mini {
+            margin: 2rem 0 1rem;
+            padding: 1.2rem 1.5rem;
+            background: #f9fafc;
+            border-radius: 1.2rem;
+            border: 1px solid #e7ebf2;
+        }
+
+        .faq-mini details {
+            margin-bottom: 0.5rem;
+        }
+
+        .faq-mini details:last-child {
+            margin-bottom: 0;
+        }
+
+        .faq-mini summary {
+            cursor: pointer;
+            font-weight: 500;
+            color: #1f2937;
+            padding: 0.4rem 0;
+            list-style: none;
+            display: flex;
+            align-items: center;
+        }
+
+        .faq-mini summary::-webkit-details-marker {
+            display: none;
+        }
+
+        .faq-mini summary::before {
+            content: "﹖";
+            color: #d97737;
+            margin-right: 0.6rem;
+            font-weight: 600;
+            font-size: 1.1rem;
+        }
+
+        .faq-mini details[open] summary::before {
+            content: "﹗";
+        }
+
+        .faq-mini .answer {
+            padding: 0.3rem 1rem 0.6rem 1.8rem;
+            font-size: 0.92rem;
+            color: #4b5563;
+        }
+
+        .note-box {
+            margin: 2rem 0 1.6rem;
+            padding: 1.2rem 1.5rem;
+            background: #f2f4f8;
+            border-radius: 0.8rem;
+            border-left: 4px solid #b0b8c8;
+            font-size: 0.92rem;
+            color: #374151;
+        }
+
+        .note-box strong {
+            color: #1e293b;
+        }
+
+        hr {
+            border: none;
+            border-top: 1px solid #e2e6ed;
+            margin: 2.4rem 0 1.2rem;
+        }
+
+        .footer-note {
+            font-size: 0.85rem;
+            color: #6b7280;
+            text-align: center;
+            padding: 1.8rem 1rem 3rem;
+            border-top: 1px solid #e2e6ed;
+            margin-top: 1.8rem;
+        }
+
+        .footer-note a {
+            font-weight: 400;
+            color: #6b7280;
+            box-shadow: none;
+        }
+
+        .footer-note a:hover {
+            color: #c55a1e;
+        }
+
+        @media (max-width: 520px) {
+            .hero h1 {
+                font-size: 2rem;
+            }
+            .hero {
+                padding: 3rem 1.2rem 2.5rem;
+            }
+            .content-wrapper {
+                padding: 1.8rem 1rem 2.5rem;
+            }
+            .feature-grid {
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<section class="hero">
+    <h1>爱游戏 · 日常查询与对照</h1>
+    <p class="sub">一个围绕游戏记录、作品脉络与延伸阅读的轻量工具站，适合在寻找信息或整理思路时随手打开。</p>
+    <span class="tagline"><span>◈</span> 资料 · 对照 · 索引</span>
+</section>
+
+<div class="content-wrapper">
+
+    <!-- 摘要 -->
+    <h2 class="section-title">它解决什么问题</h2>
+    <p>面对零散的游戏记忆、模糊的发行时间、同一个系列不同版本之间的差异——我们常常需要一处可以快速对照、回溯和延展浏览的地方。<a href="https://official-iyouxi.com">爱游戏</a> 提供的正是这样一种安静的索引体验：它不催促你完成什么，只是把信息整理得便于查阅。</p>
+    <p>你可以把它理解成一本不断更新的个人参考手册，只不过内容焦点是电子游戏及其背后的文化切片。从经典作品到近年话题作，从开发背景到版本变迁，页面之间的跳转总在几个点击之内。</p>
+
+    <!-- 亮点卡片 -->
+    <h2 class="section-title">几个顺手的地方</h2>
+    <div class="feature-grid">
+        <div class="feature-card">
+            <div class="icon">🗂️</div>
+            <h3>条目对照</h3>
+            <p>同一游戏的不同平台版本、发售年份、制作团队并列展示，减少反复切换标签页的麻烦。</p>
+        </div>
+        <div class="feature-card">
+            <div class="icon">🔗</div>
+            <h3>延伸节点</h3>
+            <p>每一条目下附带相关作品、续作、精神续作或同工作室出品，适合发现意料之外的连接。</p>
+        </div>
+        <div class="feature-card">
+            <div class="icon">📋</div>
+            <h3>摘录与备注</h3>
+            <p>部分页面包含短评摘录、开发轶事或媒体评分解读，作为背景补充，不喧宾夺主。</p>
+        </div>
+        <div class="feature-card">
+            <div class="icon">🔎</div>
+            <h3>搜索直觉</h3>
+            <p>模糊检索和标签筛选尊重日常记忆——记不全全名也可以找到目标。</p>
+        </div>
+    </div>
+
+    <!-- 使用场景 / 切入角度 -->
+    <h2 class="section-title">日常里的几个使用瞬间</h2>
+    <ul class="scene-list">
+        <li>突然想起一个老游戏，只记得主角特征和大致年代——在 <a href="https://official-iyouxi.com">爱游戏</a> 里用几个关键词检索，对照封面和简介确认。</li>
+        <li>写怀旧文章或做视频脚本时，需要核实某款游戏的正确英文名、发行顺序或制作人员——条目页的信息排列让引用更踏实。</li>
+        <li>朋友聊到某部作品的“精神前作”，自己毫无概念——顺着延伸链接读几段背景，不至于接不上话。</li>
+        <li>纯粹闲逛，从一部喜欢的作品出发，沿着“同类推荐”一路点下去，偶尔发现冷门宝藏。</li>
+    </ul>
+
+    <!-- 使用建议 / 提示  -->
+    <div class="note-box">
+        <strong>一点使用建议：</strong> 站内条目倾向于提供事实和关联，而非主观评价。如果你只想快速确认某个发售年份或平台独占情况，直接搜索即可；如果想花半小时漫游，不妨从一部最熟悉的游戏开始，顺着延伸链接走出去，常有意料之外的收获。
+    </div>
+
+    <!-- FAQ 摘要 -->
+    <h2 class="section-title">常见疑问 · 摘要</h2>
+    <div class="faq-mini">
+        <details>
+            <summary>收录范围大概有多宽？</summary>
+            <div class="answer">以商用电子游戏为主，涵盖主要平台（家用机、掌机、PC 及部分移动端），年代从早期街机到近期作品均有收录，但并非百分之百全覆盖。独立游戏和日式角色扮演类相对密集。</div>
+        </details>
+        <details>
+            <summary>信息更新频率如何？</summary>
+            <div class="answer">不定时更新，重点补充新作发售信息和已有条目的版本勘误。如果你发现过时或错误内容，可以通过站点内反馈渠道告知。</div>
+        </details>
+        <details>
+            <summary>是否包含评测或购买链接？</summary>
+            <div class="answer">不包含购买入口或带有倾向性的评测。部分条目会引用公开媒体评分与获奖记录，但仅作为客观参照。</div>
+        </details>
+    </div>
+
+    <!-- 可信但克制的访问说明 -->
+    <p style="margin-top: 2rem; font-size: 0.95rem; color: #4b5563; border-top: 1px solid #edf0f5; padding-top: 1.8rem;">
+        如果你只是想随手查一个游戏的中英文名、发行年份或者系列作品列表，<a href="https://official-iyouxi.com">爱游戏</a> 已经能覆盖大部分常见需求。它不依赖算法推荐，也没有排行榜或社交压力。界面保持简洁，内容聚焦在信息本身的准确与可读性上。
+    </p>
+    <p style="font-size: 0.95rem; color: #4b5563;">你可以把它当作一本搁在书架上的参考书——想到了就翻翻，不需要每天都打开，但需要时它在那里。</p>
+
+    <hr>
+
+    <div class="footer-note">
+        <span>产品说明 · 关于 <a href="https://official-iyouxi.com">爱游戏</a> 的日常用法</span>
+    </div>
+
+</div>
+
+</body>
+</html>
